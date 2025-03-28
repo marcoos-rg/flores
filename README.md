@@ -1,45 +1,30 @@
-# FloresApp
+# **Flor.es**
 
-FloresApp is a Maven-based Java application designed to manage and organize flower-related data efficiently.
+Flor.es es una aplicación web que conecta a floricultores locales con clientes finales, facilitando el proceso de compra y envío de arreglos florales, garantizando su frescura y promoviendo los comercios locales. Esta aplicación forma parte de un proyecto en grupo para la asignatura de Ingeniería de Sistemas y Servicios Telemáticos impartida en la Universidad Politécnica de Madrid.
 
-## Features
+---
 
-- Manage flower inventory.
-- Track orders and deliveries.
-- Generate reports.
+## **Autores**
 
-## Prerequisites
+- [Antonio Núñez de Santos](https://github.com/aanunnezz)
+- [Guillermo Peláez Cañizares](https://github.com/Guillepc)
+- [Marcos Rosado González](https://github.com/marcoos-rg)
+- [Juan Torres Babé](https://github.com/jutoba)
+- [Nicolás Tsingos Gallego](https://github.com/nikotg12)
 
-- Java 11 or higher
-- Maven 3.6 or higher
+---
 
-## Installation
+## **Arranque de la aplicación**
+Para arrancar la aplicación, abrir una terminal para cada servicio y ejecutar:
 
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/your-username/FloresApp.git
-    ```
-2. Navigate to the project directory:
-    ```bash
-    cd FloresApp
-    ```
-3. Build the project using Maven:
-    ```bash
-    mvn clean install
-    ```
-
-## Usage
-
-Run the application:
+### **Backend**
 ```bash
-mvn exec:java
+mvn spring-boot:run
 ```
 
-## Contributing
+### **Frontend**
+```bash
+cd frontend
 
-Contributions are welcome! Please fork the repository and submit a pull request.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
+npm start
+```
