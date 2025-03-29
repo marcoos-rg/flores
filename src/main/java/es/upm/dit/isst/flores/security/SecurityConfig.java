@@ -20,7 +20,7 @@ public class SecurityConfig {
             .headers(headers -> headers.frameOptions().sameOrigin())
             .authorizeHttpRequests(authz -> authz.anyRequest().permitAll());
 
-        return http.build();
+        return http.build();    
     }
 
     // Configuración CORS general (como ya tenías)
