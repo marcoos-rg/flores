@@ -1,6 +1,12 @@
--- Crear floricultor
-INSERT INTO floricultor (floricultor_id, nombre)
-VALUES (1, 'Floristeria Sol');
+-- Crear floricultores
+INSERT INTO floricultor (floricultor_id, nota, email, contrasena, nombre, imagen, codigo_postal, direccion)
+VALUES
+  (1, '4.5', 'sol@flores.com', 'pass123', 'Floristería Sol', 'sol.jpg', 28001, 'Calle Mayor 10, Madrid'),
+  (2, '4.8', 'verdevida@flores.com', 'verde2024', 'Verde Vida', 'verdevida.jpg', 28015, 'Calle Princesa 25, Madrid'),
+  (3, '4.3', 'naturalia@flores.com', 'natura!', 'Naturalia', 'naturalia.jpg', 28005, 'Av. Reina Sofía 8, Madrid'),
+  (4, '4.9', 'aroma@flores.com', 'aroma2024', 'Aroma Floral', 'aroma.jpg', 28020, 'Calle Flor 3, Madrid'),
+  (5, '4.6', 'petalos@flores.com', 'pet@123', 'Pétalos y Más', 'petalos.jpg', 28012, 'Plaza Castilla 1, Madrid');
+
 
 -- Insertar productos
 INSERT INTO producto (

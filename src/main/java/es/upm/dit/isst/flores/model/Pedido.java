@@ -19,7 +19,8 @@ public class Pedido {
 
     @OneToMany(mappedBy = "pedido")
     @JsonManagedReference
-    private List<Producto> productos;
+    private List<DetallePedido> detalles;
+    // private List<Producto> productos;
 
     private String estado;
     private String fecha_pedido;
@@ -46,14 +47,22 @@ public class Pedido {
         this.cliente = cliente;
     }
 
-    // Getter y Setter para 'productos'
-    public List<Producto> getProductos() {
-        return productos;
+    public List<DetallePedido> getDetalles() {
+        return detalles;
     }
 
-    public void setProductos(List<Producto> productos) {
-        this.productos = productos;
+    public void setDetalles(List<DetallePedido> detalles) {
+        this.detalles = detalles;
     }
+
+    // // Getter y Setter para 'productos'
+    // public List<Producto> getProductos() {
+    //     return productos;
+    // }
+
+    // public void setProductos(List<Producto> productos) {
+    //     this.productos = productos;
+    // }
 
     // Getter y Setter para 'estado'
     public String getEstado() {
