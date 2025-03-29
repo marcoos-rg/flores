@@ -17,6 +17,7 @@ public class SecurityConfig {
             .cors()  // habilita CORS desde la config que tienes abajo
             .and()
             .csrf().disable()
+            .headers(headers -> headers.frameOptions().sameOrigin())
             .authorizeHttpRequests(authz -> authz.anyRequest().permitAll());
 
         return http.build();
@@ -29,7 +30,7 @@ public class SecurityConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:3000")
+                        .allowedOrigins("http://localhost:3000", "http://localhost:3001")
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*");
             }
