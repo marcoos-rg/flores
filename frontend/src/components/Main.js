@@ -6,6 +6,7 @@ import VideoCard from "./Main/VideoCard";
 import Navbar from "./Navbar";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 
 function Main({ productos }) {
   const [filtros, setFiltros] = useState({
@@ -66,6 +67,26 @@ function Main({ productos }) {
         <Button variant="primary">Call Flor.es</Button>
       </Card.Body>
     </Card>
+    <Container className="mt-5">
+      <Row className="gx-4 gy-4 justify-content-center">
+        {[
+          { title: 'Follow us on Instagram!', button: "Flor.es's Instagram" },
+          { title: 'Follow us on Facebook!', button: "Flor.es's Facebook" },
+          { title: 'Contact us via email!', button: "Flor.es's email" },
+          { title: 'Contact us via phone call!', button: "Call Flor.es" },
+        ].map((item, index) => (
+          <Col key={index} xs={12} md={6}>
+            <Card className="text-center shadow-lg" style={{ aspectRatio: '1 / 1' }}>
+              <Card.Header>{item.title}</Card.Header>
+              <Card.Body className="d-flex flex-column justify-content-center align-items-center">
+                <Card.Title className="mb-3">Find below a link</Card.Title>
+                <Button variant="primary">{item.button}</Button>
+              </Card.Body>
+            </Card>
+          </Col>
+        ))}
+      </Row>
+    </Container>
       </section>
       <div style={{ height: '8rem' }} /> {/* Spacer vertical de 4rem */}
     </>
