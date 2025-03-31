@@ -63,7 +63,7 @@ function Main({ productos }) {
       <Card.Header>Contact us via phone call!</Card.Header>
       <Card.Body>
         <Card.Title>Find below a button to call us</Card.Title>
-        <Button variant="primary"> Call Flor.es</Button>
+        <Button variant="primary">Call Flor.es</Button>
       </Card.Body>
     </Card>
       </section>
