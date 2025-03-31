@@ -6,7 +6,7 @@ import VideoCard from "./Main/VideoCard";
 import Navbar from "./Navbar";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 
 function Main({ productos }) {
   const [filtros, setFiltros] = useState({
@@ -39,48 +39,19 @@ function Main({ productos }) {
         <ListaProductos productos={productosFiltrados} />
       </section>
       <section id="contactos">
-      <Card className="text-center">
-      <Card.Header>Follow us on Instagram!</Card.Header>
-      <Card.Body>
-        <Card.Title>Find below a link to our Instagram profile</Card.Title>
-        <Button variant="primary">Flor.es's Instagram</Button>
-      </Card.Body>
-    </Card>
-    <Card className="text-center">
-      <Card.Header>Follow us on Facebook!</Card.Header>
-      <Card.Body>
-        <Card.Title>Find below a link to our Facebook profile</Card.Title>
-        <Button variant="primary">Flor.es's Facebook</Button>
-      </Card.Body>
-    </Card>
-    <Card className="text-center">
-      <Card.Header>Contact us via email!</Card.Header>
-      <Card.Body>
-        <Card.Title>Find below a link to our email</Card.Title>
-        <Button variant="primary">Flor.es's email</Button>
-      </Card.Body>
-    </Card>
-    <Card className="text-center">
-      <Card.Header>Contact us via phone call!</Card.Header>
-      <Card.Body>
-        <Card.Title>Find below a button to call us</Card.Title>
-        <Button variant="primary">Call Flor.es</Button>
-      </Card.Body>
-    </Card>
     <Container className="mt-5">
-      <Row className="gx-4 gy-4 justify-content-center">
+      <Row className="gx-3 gy-4 justify-content-center">
         {[
-          { title: 'Follow us on Instagram!', button: "Flor.es's Instagram" },
-          { title: 'Follow us on Facebook!', button: "Flor.es's Facebook" },
-          { title: 'Contact us via email!', button: "Flor.es's email" },
-          { title: 'Contact us via phone call!', button: "Call Flor.es" },
+          { title: 'Follow us on Instagram!', button: "Flor.es's Instagram", color: "danger"},
+          { title: 'Follow us on Facebook!', button: "Flor.es's Facebook", color: "warning" },
+          { title: 'Contact us via email!', button: "Flor.es's email", color: "info" },
+          { title: 'Contact us via phone call!', button: "Call Flor.es", color: "success" },
         ].map((item, index) => (
-          <Col key={index} xs={12} md={6}>
-            <Card className="text-center shadow-lg" style={{ aspectRatio: '1 / 1' }}>
-              <Card.Header>{item.title}</Card.Header>
+          <Col key={index} xs={12} md={6} className="d-flex justify-content-center">
+            <Card className="text-center shadow-lg" style={{ width: '30rem', height: '10rem' }}>
+              <Card.Header className="fw-bold">{item.title}</Card.Header>
               <Card.Body className="d-flex flex-column justify-content-center align-items-center">
-                <Card.Title className="mb-3">Find below a link</Card.Title>
-                <Button variant="primary">{item.button}</Button>
+                <Button variant={item.color}>{item.button}</Button>
               </Card.Body>
             </Card>
           </Col>
