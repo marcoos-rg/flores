@@ -42,10 +42,10 @@ function Main({ productos }) {
     <Container className="mt-5">
       <Row className="gx-3 gy-4 justify-content-center">
         {[
-          { title: 'Follow us on Instagram!', button: "Flor.es's Instagram", color: "danger"},
-          { title: 'Follow us on Facebook!', button: "Flor.es's Facebook", color: "warning" },
-          { title: 'Contact us via email!', button: "Flor.es's email", color: "info" },
-          { title: 'Contact us via phone call!', button: "Call Flor.es", color: "success" },
+          { title: 'Síguenos en Instagram!', button: "Link a Instagram", color: 'dark'},
+          { title: 'Síguenos en Facebook!', button: "Link a Facebook", color: "dark" },
+          { title: 'Contáctanos por email!', button: "Email", color: "dark" },
+          { title: 'Contáctanos por teléfono!', button: "LLámanos", color: "dark" },
         ].map((item, index) => (
           <Col key={index} xs={12} md={6} className="d-flex justify-content-center">
             <Card className="text-center shadow-lg" style={{ width: '30rem', height: '10rem' }}>
