@@ -4,7 +4,6 @@ import { Container, Row, Col, Card, Button, Badge } from "react-bootstrap";
 import CustomNavbar from "./Navbar"
 import "../App.css"
 import defaultImage from "./default.png"
->>>>>>> 77e5b18c19d14a141183f4a10e266cd680e64173
 
 function DetalleProducto({ productos }) {
   const { id } = useParams(); // Obtiene el ID desde la URL
@@ -22,63 +21,6 @@ function DetalleProducto({ productos }) {
 
   return (
     <>
-<<<<<<< HEAD
-      <Navbar />
-      <Container className="mt-5">
-        <Row className="justify-content-center">
-          <Col md={8}>
-            <Card className="shadow-lg p-4">
-              <Row>
-                {/* Imagen del producto */}
-                <Col md={6} className="text-center">
-                  <Card.Img
-                    variant="top"
-                    src={producto.imagen}
-                    alt={producto.nombre}
-                    className="img-fluid rounded"
-                    style={{ maxHeight: "350px", objectFit: "cover" }}
-                  />
-                </Col>
-
-                {/* Información del producto */}
-                <Col md={6} className="d-flex flex-column justify-content-between">
-                  <Card.Body>
-                    <Card.Title className="text-primary fw-bold">{producto.nombre}</Card.Title>
-
-                    <Badge bg="info" className="mb-2">{producto.ocasion}</Badge>
-                    <Badge bg="warning" className="ms-2 mb-2">{producto.tipo_flor}</Badge>
-
-                    <Card.Text className="mt-3">
-                      <strong>Descripción:</strong> {producto.descripcion}
-                    </Card.Text>
-
-                    <Card.Text>
-                      <strong>Precio:</strong> <span className="text-success fw-bold">€{producto.precio}</span>
-                    </Card.Text>
-
-                    <Card.Text>
-                      <strong>Valoración:</strong> {producto.rating} ({producto.numeroDeValoraciones} valoraciones)
-                    </Card.Text>
-
-                    <Card.Text>
-                      <strong>Vendedor:</strong> {producto.floricultor?.nombre || "Desconocido"}
-                    </Card.Text>
-                  </Card.Body>
-
-                  {/* Botones */}
-                  <div className="d-flex justify-content-between p-3">
-                    <Button variant="success" className="w-50 me-2">Añadir al carrito</Button>
-                    <Button variant="secondary" className="w-50" onClick={() => navegar("/")}>Volver</Button>
-                  </div>
-                </Col>
-              </Row>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
-    </>
-
-=======
       <CustomNavbar />
       <div className="main-content">
         <Container className="mt-5">
@@ -209,7 +151,6 @@ function DetalleProducto({ productos }) {
         </Container>
       </div>
     </>
->>>>>>> 77e5b18c19d14a141183f4a10e266cd680e64173
   );
 }
 
