@@ -1,9 +1,6 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Container, Row, Col, Card, Button, Badge } from "react-bootstrap";
-<<<<<<< HEAD
-import Navbar from "./Navbar"; // Asegúrate de importar tu Navbar si es necesario
-=======
 import CustomNavbar from "./Navbar"
 import "../App.css"
 import defaultImage from "./default.png"
