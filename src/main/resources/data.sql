@@ -1,11 +1,11 @@
 -- Crear floricultores
 INSERT INTO floricultor (floricultor_id, nota, email, contrasena, nombre, imagen, codigo_postal, direccion)
 VALUES
-  (1, '4.5', 'sol@flores.com', 'pass123', 'Floristería Sol', 'sol.jpg', 28001, 'Calle Mayor 10, Madrid'),
-  (2, '4.8', 'verdevida@flores.com', 'verde2024', 'Verde Vida', 'verdevida.jpg', 29015, 'Calle Princesa 25, Madrid'),
-  (3, '4.3', 'naturalia@flores.com', 'natura!', 'Naturalia', 'naturalia.jpg', 30005, 'Av. Reina Sofía 8, Madrid'),
-  (4, '4.9', 'aroma@flores.com', 'aroma2024', 'Aroma Floral', 'aroma.jpg', 31020, 'Calle Flor 3, Madrid'),
-  (5, '4.6', 'petalos@flores.com', 'pet@123', 'Pétalos y Más', 'petalos.jpg', 32012, 'Plaza Castilla 1, Madrid');
+  (1, '4.5', 'sol@flores.com', 'pass123', 'Floristería Sol', 'https://img.freepik.com/foto-gratis/mujer-plano-medio-celebrando-dia-madre_23-2151207267.jpg', 28001, 'Calle Mayor 10, Madrid'),
+  (2, '4.8', 'verdevida@flores.com', 'verde2024', 'Verde Vida', 'https://img.freepik.com/foto-gratis/florista-sonriente-admirando-ramo_23-2147760922.jpg?t=st=1743534203~exp=1743537803~hmac=406b3eb962877c194ba2e985c85443f5f94587dc1d35f18200e91b70f3f6349e&w=1380', 29015, 'Calle Princesa 25, Madrid'),
+  (3, '4.3', 'naturalia@flores.com', 'natura!', 'Naturalia', 'https://img.freepik.com/fotos-premium/propietario-floristeria_53876-20191.jpg?ga=GA1.1.27058168.1725817494&semt=ais_hybrid', 30005, 'Av. Reina Sofía 8, Madrid'),
+  (4, '4.9', 'aroma@flores.com', 'aroma2024', 'Aroma Floral', 'https://img.freepik.com/fotos-premium/mujer-mayor-arregla-flores-mercado-flores-local_52137-21736.jpg?ga=GA1.1.27058168.1725817494&semt=ais_hybrid', 31020, 'Calle Flor 3, Madrid'),
+  (5, '4.6', 'petalos@flores.com', 'pet@123', 'Pétalos y Más', 'https://img.freepik.com/foto-gratis/concepto-jardineria-manos-femeninas_23-2148127942.jpg?ga=GA1.1.27058168.1725817494&semt=ais_hybrid', 32012, 'Plaza Castilla 1, Madrid');
 
 
 -- Insertar productos

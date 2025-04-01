@@ -104,12 +104,14 @@ function DetalleProducto({ productos }) {
                       >
                         {producto.floricultor?.imagen && (
                           <img
-                            src={defaultImage} //esto cuando haya imagenes cambiarlo
-                            alt={defaultImage}
+                            src={producto.floricultor?.imagen || defaultImage}
+                            alt={producto.floricultor?.nombre || "Floricultor"}
                             style={{
                               width: "50px",
                               height: "50px",
-                              marginRight: "10px", 
+                              marginRight: "10px",
+                              borderRadius: "50%", // Esto hace la imagen redonda
+                              objectFit: "cover", // Esto asegura que la imagen se ajuste bien al círculo
                             }}
                           />
                         )}
