@@ -2,12 +2,11 @@ import React from "react";
 import Producto from "./Producto";
 import { Container, Row, Col } from "react-bootstrap";
 
-import { Card } from "react-bootstrap";
+
 
 function ListaProductos({ productos }) {
   return (
-    <Card border="secondary" className="shadow-sm border-0 rounded-4">
-      <Container className="mt-4">
+    <Container className="mt-4">
 
       {productos.length === 0 ? (
         <p className="text-center text-muted">
@@ -23,7 +22,6 @@ function ListaProductos({ productos }) {
         </Row>
       )}
     </Container>
-    </Card>
   );
 }
 
