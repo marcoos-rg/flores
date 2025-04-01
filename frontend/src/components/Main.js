@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Card, Form, Button, Container } from "react-bootstrap";
+import { InputGroup } from "react-bootstrap";
+import { FaMapMarkerAlt } from "react-icons/fa";
 
 import Filtros from "./Main/Filtros";
 import ListaProductos from "./Main/ListaProductos";
@@ -97,14 +99,19 @@ function Main({ productos }) {
 
                   <Form.Group className="mb-3" controlId="formCodigoPostal">
                     <Form.Label>Código Postal</Form.Label>
-                    <Form.Control
-                      type="text"
-                      maxLength="5"
-                      placeholder="Ej: 28001"
-                      value={codigoPostalInput}
-                      onChange={(e) => setCodigoPostalInput(e.target.value.replace(/\D/g, ''))}
-                      required
-                    />
+                    <InputGroup>
+                      <InputGroup.Text>
+                        <FaMapMarkerAlt />
+                      </InputGroup.Text>
+                      <Form.Control
+                        type="text"
+                        maxLength="5"
+                        placeholder="Ej: 28001"
+                        value={codigoPostalInput}
+                        onChange={(e) => setCodigoPostalInput(e.target.value.replace(/\D/g, ''))}
+                        required
+                      />
+                    </InputGroup>
                   </Form.Group>
 
                   <div className="d-grid">
