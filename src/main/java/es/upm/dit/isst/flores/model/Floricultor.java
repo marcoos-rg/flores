@@ -23,7 +23,7 @@ public class Floricultor {
     @JsonManagedReference
     private List<Producto> productos;
 
-    // Getters y Setters
+    // Getters y Setters...
 
     public Long getFloricultor_id() {
         return floricultor_id;

@@ -48,3 +48,16 @@ INSERT INTO producto (
 (33, 3, 'Ramo de Azaleas', 'Vistosas azaleas de colores vivos.', 'https://images.myglobalflowers.com/be7cdc71-2b24-4abf-e37c-409aa4d6e900/medium', 66.99, 'Radiante', 'Azaleas', false),
 (34, 4, 'Hortensias Azules', 'Mágicas hortensias de un azul profundo.', 'https://images.myglobalflowers.com/410fb92f-fe09-4c62-ce3c-29344cd06700/medium', 91.99, 'Misterioso', 'Hortensias', true),
 (35, 3, 'Ramo de Rosas Rojas', 'Un hermoso ramo de rosas rojas con pétalos aterciopelados.', 'https://images.myglobalflowers.com/dcfb6687-2665-4e63-956d-c998fb276400/medium', 56.99, 'Romántico', 'Rosas', true);
+
+-- Crear tabla de clientes
+-- Las contraseñas estan cifradas con bcrypt
+-- Mail: ana@cliente.com --> Contrasena: ana123
+-- Mail: luis@cliente.com --> Contrasena: luis123
+-- Y así sucesivamente
+INSERT INTO cliente (cliente_id, email, contrasena, nombre, imagen) VALUES
+(1, 'ana@cliente.com', 'ana123', 'Ana Rosas', 'https://randomuser.me/api/portraits/women/1.jpg'),
+(2, 'luis@cliente.com', 'luis123', 'Luis Pérez', 'https://randomuser.me/api/portraits/men/2.jpg'),
+(3, 'carla@cliente.com', 'carla123', 'Carla Sánchez', 'https://randomuser.me/api/portraits/women/3.jpg'),
+(4, 'david@cliente.com', 'david123', 'David Gómez', 'https://randomuser.me/api/portraits/men/4.jpg'),
+(5, 'maria@cliente.com', 'maria123', 'María López', 'https://randomuser.me/api/portraits/women/5.jpg');
+

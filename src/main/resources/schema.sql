@@ -21,3 +21,11 @@ CREATE TABLE producto (
     destacado BOOLEAN,
     CONSTRAINT fk_floricultor FOREIGN KEY (floricultor_id) REFERENCES floricultor(floricultor_id)
 );
+
+CREATE TABLE cliente (
+    cliente_id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    email VARCHAR(255),
+    contrasena VARCHAR(255),
+    nombre VARCHAR(255),
+    imagen VARCHAR(255)
+);

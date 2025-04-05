@@ -6,24 +6,24 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 public class SecurityConfig {
 
-    // Configuración del filtro de seguridad
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-            .cors()  // habilita CORS desde la config que tienes abajo
+            .cors()
             .and()
             .csrf().disable()
             .headers(headers -> headers.frameOptions().sameOrigin())
             .authorizeHttpRequests(authz -> authz.anyRequest().permitAll());
 
-        return http.build();    
+        return http.build();
     }
 
-    // Configuración CORS general (como ya tenías)
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
@@ -35,5 +35,10 @@ public class SecurityConfig {
                         .allowedHeaders("*");
             }
         };
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 }

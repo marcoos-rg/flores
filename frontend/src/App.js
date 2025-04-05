@@ -10,6 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Main from './components/Main';
 import Footer from './components/Footer';
 import DetalleProducto from './components/DetalleProducto';
+import Login from "./components/Login";
 
 function App() {
   const [productos, setProductos] = useState([]); // Inicializa los productos como vacíos
@@ -23,10 +24,10 @@ function App() {
   return (
     <Router>
       <div className="d-flex flex-column min-vh-100">
-        
         <Routes>
           <Route path="/" element={<Main productos={productos} />} />
           <Route path="/producto/:id" element={<DetalleProducto productos={productos} />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
         <Footer />
       </div>

@@ -22,9 +22,9 @@ public class Cliente {
     @JsonManagedReference
     private List<Pedido> pedidos;
 
-    // Getters y Setters
+    // Getters y Setters...
 
-    public Long getliente_id() {
+    public Long getCliente_id() {
         return cliente_id;
     }
 
