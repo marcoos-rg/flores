@@ -9,6 +9,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+
+
 @Configuration
 public class SecurityConfig {
 
@@ -19,7 +21,9 @@ public class SecurityConfig {
             .and()
             .csrf().disable()
             .headers(headers -> headers.frameOptions().sameOrigin())
-            .authorizeHttpRequests(authz -> authz.anyRequest().permitAll());
+            .authorizeHttpRequests(authz -> authz
+                .requestMatchers("/auth/login", "/auth/register").permitAll()
+                .anyRequest().permitAll());
 
         return http.build();
     }

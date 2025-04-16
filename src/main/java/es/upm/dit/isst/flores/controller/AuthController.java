@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 import java.util.List;
 
+import es.upm.dit.isst.flores.dto.RegisterRequest;
 
 @RestController
 @RequestMapping("/auth")
@@ -53,6 +54,23 @@ public class AuthController {
 
         // Si no encuentra coincidencia o las contraseñas no coinciden
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales incorrectas");
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<?> registrarCliente(@RequestBody RegisterRequest request) {
+        if (clienteRepository.findByEmail(request.getEmail()).isPresent()) {
+            return ResponseEntity.badRequest().body("El email ya está registrado");
+        }
+
+        Cliente nuevoCliente = new Cliente();
+        nuevoCliente.setEmail(request.getEmail());
+        nuevoCliente.setContrasena(passwordEncoder.encode(request.getContrasena()));
+        nuevoCliente.setNombre(request.getNombre());
+        nuevoCliente.setImagen(request.getImagen());
+
+        clienteRepository.save(nuevoCliente);
+
+        return ResponseEntity.ok("Registro exitoso");
     }
 
 }

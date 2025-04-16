@@ -61,3 +61,4 @@ INSERT INTO cliente (cliente_id, email, contrasena, nombre, imagen) VALUES
 (4, 'david@cliente.com', 'david123', 'David Gómez', 'https://randomuser.me/api/portraits/men/4.jpg'),
 (5, 'maria@cliente.com', 'maria123', 'María López', 'https://randomuser.me/api/portraits/women/5.jpg');
 
+ALTER TABLE cliente ALTER COLUMN cliente_id RESTART WITH 6;
