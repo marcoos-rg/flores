@@ -3,6 +3,8 @@ package es.upm.dit.isst.flores.model;
 import jakarta.persistence.*;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -17,19 +19,23 @@ public class Pedido {
     @JsonIgnoreProperties("pedidos")
     private Cliente cliente;
 
-    @OneToMany(mappedBy = "pedido")
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<DetallePedido> detalles;
-    // private List<Producto> productos;
 
     private String estado;
-    private String fecha_pedido;
-    private String fecha_entrega;
+
+    private LocalDate fecha_pedido;
+    private LocalDate fecha_entrega;
+
     private String direccion_pedido;
+
     private double precio;
+
     private Boolean urgencia;
 
-    // Getter y Setter para 'pedido_id'
+    // Getters y Setters
+
     public Long getPedido_id() {
         return pedido_id;
     }
@@ -38,7 +44,6 @@ public class Pedido {
         this.pedido_id = pedido_id;
     }
 
-    // Getter y Setter para 'cliente'
     public Cliente getCliente() {
         return cliente;
     }
@@ -55,16 +60,6 @@ public class Pedido {
         this.detalles = detalles;
     }
 
-    // // Getter y Setter para 'productos'
-    // public List<Producto> getProductos() {
-    //     return productos;
-    // }
-
-    // public void setProductos(List<Producto> productos) {
-    //     this.productos = productos;
-    // }
-
-    // Getter y Setter para 'estado'
     public String getEstado() {
         return estado;
     }
@@ -73,25 +68,22 @@ public class Pedido {
         this.estado = estado;
     }
 
-    // Getter y Setter para 'fecha_pedido'
-    public String getFecha_pedido() {
+    public LocalDate getFecha_pedido() {
         return fecha_pedido;
     }
 
-    public void setFecha_pedido(String fecha_pedido) {
+    public void setFecha_pedido(LocalDate fecha_pedido) {
         this.fecha_pedido = fecha_pedido;
     }
 
-    // Getter y Setter para 'fecha_entrega'
-    public String getFecha_entrega() {
+    public LocalDate getFecha_entrega() {
         return fecha_entrega;
     }
 
-    public void setFecha_entrega(String fecha_entrega) {
+    public void setFecha_entrega(LocalDate fecha_entrega) {
         this.fecha_entrega = fecha_entrega;
     }
 
-    // Getter y Setter para 'direccion_pedido'
     public String getDireccion_pedido() {
         return direccion_pedido;
     }
@@ -100,7 +92,6 @@ public class Pedido {
         this.direccion_pedido = direccion_pedido;
     }
 
-    // Getter y Setter para 'precio'
     public double getPrecio() {
         return precio;
     }
@@ -109,7 +100,6 @@ public class Pedido {
         this.precio = precio;
     }
 
-    // Getter y Setter para 'urgencia'
     public Boolean getUrgencia() {
         return urgencia;
     }
