@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useCart } from "./Main/CartContext";
+
 
 function CustomNavbar() {
   const navigate = useNavigate();
   const location = useLocation();
   const [usuario, setUsuario] = useState(null);
+  const { carrito } = useCart();
+  const cantidadTotal = carrito.reduce((sum, p) => sum + p.cantidad, 0);
+
 
   useEffect(() => {
     const usuarioGuardado = localStorage.getItem("usuario");
@@ -58,6 +63,7 @@ function CustomNavbar() {
             <Nav.Link onClick={() => handleNavigate("inicio")} className="text-white">Inicio</Nav.Link>
             <Nav.Link onClick={() => handleNavigate("productos")} className="text-white">Productos</Nav.Link>
             <Nav.Link onClick={() => handleNavigate("contacto")} className="text-white">Contacto</Nav.Link>
+            <Nav.Link onClick={() => navigate("/carrito")} className="text-white">🛒 Carrito{cantidadTotal > 0 && (<span className="ms-1 badge bg-success">{cantidadTotal}</span>)}</Nav.Link>
 
             {usuario ? (
               <NavDropdown

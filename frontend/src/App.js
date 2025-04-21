@@ -11,6 +11,10 @@ import Main from './components/Main';
 import Footer from './components/Footer';
 import DetalleProducto from './components/DetalleProducto';
 import Login from "./components/Login";
+import { CartProvider } from "./components/Main/CartContext";
+import Carrito from "./components/Main/Carrito";
+
+
 
 function App() {
   const [productos, setProductos] = useState([]); // Inicializa los productos como vacíos
@@ -22,16 +26,19 @@ function App() {
   }, []);
 
   return (
-    <Router>
-      <div className="d-flex flex-column min-vh-100">
-        <Routes>
-          <Route path="/" element={<Main productos={productos} />} />
-          <Route path="/producto/:id" element={<DetalleProducto productos={productos} />} />
-          <Route path="/login" element={<Login />} />
-        </Routes>
-        <Footer />
-      </div>
-    </Router>
+    <CartProvider>
+      <Router>
+        <div className="d-flex flex-column min-vh-100">
+          <Routes>
+            <Route path="/" element={<Main productos={productos} />} />
+            <Route path="/producto/:id" element={<DetalleProducto productos={productos} />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/carrito" element={<Carrito />} /> 
+          </Routes>
+          <Footer />
+        </div>
+      </Router>
+    </CartProvider>
   );
 }
 

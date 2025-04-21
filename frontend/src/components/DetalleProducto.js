@@ -4,10 +4,12 @@ import { Container, Row, Col, Card, Button, Badge } from "react-bootstrap";
 import CustomNavbar from "./Navbar"
 import "../App.css"
 import defaultImage from "./default.png"
+import { useCart } from "./Main/CartContext";
 
 function DetalleProducto({ productos }) {
   const { id } = useParams(); // Obtiene el ID desde la URL
   const navegar = useNavigate(); // Hook para navegar
+  const { añadirAlCarrito } = useCart();
 
   const producto = productos?.find((p) => p.producto_id?.toString() === id);
   
@@ -129,6 +131,7 @@ function DetalleProducto({ productos }) {
                           backgroundColor: "#28a745",
                           borderColor: "#28a745",
                         }}
+                        onClick={() => añadirAlCarrito(producto)}
                       >
                         Añadir al carrito
                       </Button>
