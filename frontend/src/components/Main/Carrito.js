@@ -1,22 +1,59 @@
 // src/Components/Main/Carrito.js
-import React from "react";
-import { Container, Table, Button } from "react-bootstrap";
+import React, { useState } from "react";
+import { Container, Table, Button, Alert } from "react-bootstrap";
 import { useCart } from "./CartContext";
 import { useNavigate } from "react-router-dom";
-import Navbar from "../Navbar"; // Ajusta si tu Navbar está en otra ruta
+import Navbar from "../Navbar"; // Ajusta la ruta si tu navbar está en otro sitio
 
 function Carrito() {
   const { carrito, quitarDelCarrito, vaciarCarrito } = useCart();
   const navegar = useNavigate();
+  
+  // Estado para la alerta
+  const [showAlert, setShowAlert] = useState(false);
+
+  // Lógica para verificar si el usuario está logueado
+  const usuarioGuardado = localStorage.getItem("usuario");
+  const usuario = usuarioGuardado ? JSON.parse(usuarioGuardado) : null;
 
   const total = carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0);
+
+  const handlePago = () => {
+    if (usuario) {
+      // Si está logueado, no hace nada (puedes agregar más lógica aquí si lo deseas)
+      setShowAlert(true);
+    } else {
+      // Si no está logueado, muestra la alerta y redirige después de un breve retraso
+      setShowAlert(true);
+      setTimeout(() => {
+        navegar("/login");
+      }, 1000); // Redirige después de 2 segundos
+    }
+  };
 
   return (
     <>
       <Navbar />
-      <Container style={{ marginTop: "6rem" }} className="pt-5 mb-5 p-4 shadow rounded bg-light">
-
+      <Container className="mt-5 pt-5 mb-5 p-4 shadow rounded bg-light">
         <h2 className="mb-4 text-center">🛒 Tu carrito de compras</h2>
+
+        {showAlert && !usuario && (
+          <Alert 
+          variant="warning" 
+          onClose={() => setShowAlert(false)} 
+          dismissible
+          className="text-dark shadow-lg rounded-3 p-3"
+          style={{
+            backgroundColor: '#fff3cd', 
+            borderColor: '#ffeeba',
+            color: '#856404',
+          }}
+        >
+          <Alert.Heading className="fw-bold" style={{ color: '#856404' }}>No estás logueado</Alert.Heading>
+          <p>Para proceder con el pago, debes iniciar sesión.</p>
+        </Alert>
+        
+        )}
 
         {carrito.length === 0 ? (
           <p className="text-center">Tu carrito está vacío.</p>
@@ -62,7 +99,7 @@ function Carrito() {
               <Button variant="warning" onClick={vaciarCarrito}>
                 🗑️ Vaciar carrito
               </Button>
-              <Button variant="success">
+              <Button variant="success" onClick={handlePago}>
                 💳 Pagar
               </Button>
             </div>
