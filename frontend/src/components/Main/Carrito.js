@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import { Container, Table, Button, Alert } from "react-bootstrap";
 import { useCart } from "./CartContext";
 import { useNavigate } from "react-router-dom";
-import Navbar from "../Navbar"; // Ajusta la ruta si tu navbar está en otro sitio
+import Navbar from "../Navbar";
+import FormularioPedido from "./FormularioPedido"; // Ajusta la ruta si tu navbar está en otro sitio
 
 function Carrito() {
   const { carrito, quitarDelCarrito, vaciarCarrito } = useCart();
@@ -18,10 +19,13 @@ function Carrito() {
 
   const total = carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0);
 
+  const [mostrarFormulario, setMostrarFormulario] = useState(false);
+
   const handlePago = () => {
     if (usuario) {
+      setMostrarFormulario(true);
       // Si está logueado, no hace nada (puedes agregar más lógica aquí si lo deseas)
-      setShowAlert(true);
+      // setShowAlert(true);
     } else {
       // Si no está logueado, muestra la alerta y redirige después de un breve retraso
       setShowAlert(true);
@@ -106,6 +110,13 @@ function Carrito() {
           </>
         )}
       </Container>
+      {usuario && (
+        <FormularioPedido
+          mostrar={mostrarFormulario}
+          onClose={() => setMostrarFormulario(false)}
+          usuario={usuario}
+        />
+      )}
     </>
   );
 }
