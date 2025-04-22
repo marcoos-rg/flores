@@ -75,6 +75,11 @@ function CustomNavbar() {
             ) : (
               <Nav.Link onClick={() => navigate("/login")} className="text-white">Login</Nav.Link>
             )}
+
+          {usuario && usuario.tipoUsuario == "floricultor" && (
+            <Nav.Link onClick={() => navigate("/gestioncatalogo")} className="text-white">Gestionar Catálogo</Nav.Link>
+          )}
+
           </Nav>
         </Navbar.Collapse>
       </Container>

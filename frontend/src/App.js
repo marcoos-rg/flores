@@ -13,7 +13,7 @@ import DetalleProducto from './components/DetalleProducto';
 import Login from "./components/Login";
 import { CartProvider } from "./components/Main/CartContext";
 import Carrito from "./components/Main/Carrito";
-
+import GestionCatalogo from "./components/Main/GestionCatalogo";
 
 
 function App() {
@@ -34,6 +34,13 @@ function App() {
             <Route path="/producto/:id" element={<DetalleProducto productos={productos} />} />
             <Route path="/login" element={<Login />} />
             <Route path="/carrito" element={<Carrito />} /> 
+            <Route path="/gestioncatalogo" element={<GestionCatalogo />} />
+
+            {/* {user && user.tipo === "floricultor" && (
+              <Route path="/gestioncatalogo" element={<GestionCatalogo />} />
+            )}  */}
+
+
           </Routes>
           <Footer />
         </div>
