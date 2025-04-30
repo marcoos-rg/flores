@@ -10,7 +10,7 @@ CREATE TABLE floricultor (
 );
 
 CREATE TABLE producto (
-    producto_id BIGINT PRIMARY KEY,
+    producto_id BIGINT PRIMARY KEY AUTO_INCREMENT,
     floricultor_id BIGINT,
     nombre VARCHAR(255),
     descripcion VARCHAR(255),

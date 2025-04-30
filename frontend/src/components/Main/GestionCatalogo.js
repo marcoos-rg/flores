@@ -1,6 +1,7 @@
-// src/Components/Main/GestionCatalogo.js
-import React, { useState } from "react";
+
+import React, { useState, useEffect } from "react";
 import { Container, Table, Button, Form, Modal } from "react-bootstrap";
+import axios from "axios";
 import Navbar from "../Navbar";
 
 function GestionCatalogo() {
@@ -15,14 +16,40 @@ function GestionCatalogo() {
         imagen: ""
     });
 
+    const usuario = JSON.parse(localStorage.getItem("usuario"));
+    const floricultorId = usuario?.tipoUsuario === "floricultor" ? usuario.id : null;
+
+    useEffect(() => {
+        if (floricultorId) {
+            axios.get(`http://localhost:8080/api/productos/floricultor/${floricultorId}`)
+                .then(response => setCatalogo(response.data))
+                .catch(error => console.error("Error al cargar catálogo:", error));
+        }
+    }, [floricultorId]);
+
     const agregarRamo = () => {
-        setCatalogo([...catalogo, { ...nuevoRamo, id: Date.now() }]);
-        setNuevoRamo({ nombre: "", precio: 0, tipoFlor: "", descripcion: "", ocasion: "", imagen: "" });
-        setShowModal(false);
+        const ramoAEnviar = {
+            ...nuevoRamo,
+            floricultorId: floricultorId,
+            destacado: false
+        };
+
+        axios.post("http://localhost:8080/api/productos", ramoAEnviar)
+            .then(() => axios.get(`http://localhost:8080/api/productos/floricultor/${floricultorId}`))
+            .then(response => {
+                setCatalogo(response.data);
+                setNuevoRamo({ nombre: "", precio: 0, tipoFlor: "", descripcion: "", ocasion: "", imagen: "" });
+                setShowModal(false);
+            })
+            .catch(error => console.error("Error al crear ramo:", error));
     };
 
     const quitarRamo = (id) => {
-        setCatalogo(catalogo.filter(ramo => ramo.id !== id));
+        axios.delete(`http://localhost:8080/api/productos/${id}`)
+            .then(() => {
+                setCatalogo(catalogo.filter(ramo => ramo.producto_id !== id));
+            })
+            .catch(error => console.error("Error al eliminar ramo:", error));
     };
 
     return (
@@ -52,10 +79,10 @@ function GestionCatalogo() {
                         </thead>
                         <tbody>
                             {catalogo.map(ramo => (
-                                <tr key={ramo.id} className="align-middle text-center">
+                                <tr key={ramo.producto_id} className="align-middle text-center">
                                     <td>{ramo.nombre}</td>
                                     <td>€{ramo.precio.toFixed(2)}</td>
-                                    <td>{ramo.tipoFlor}</td>
+                                    <td>{ramo.tipo_flor}</td>
                                     <td>{ramo.descripcion}</td>
                                     <td>{ramo.ocasion}</td>
                                     <td>
@@ -66,11 +93,7 @@ function GestionCatalogo() {
                                         )}
                                     </td>
                                     <td>
-                                        <Button
-                                            variant="danger"
-                                            size="sm"
-                                            onClick={() => quitarRamo(ramo.id)}
-                                        >
+                                        <Button variant="danger" size="sm" onClick={() => quitarRamo(ramo.producto_id)}>
                                             Quitar
                                         </Button>
                                     </td>
@@ -81,7 +104,6 @@ function GestionCatalogo() {
                 )}
             </Container>
 
-            {/* Modal para agregar un nuevo ramo */}
             <Modal show={showModal} onHide={() => setShowModal(false)}>
                 <Modal.Header closeButton>
                     <Modal.Title>Agregar Nuevo Ramo</Modal.Title>
@@ -90,68 +112,46 @@ function GestionCatalogo() {
                     <Form>
                         <Form.Group className="mb-3">
                             <Form.Label>Nombre del Ramo</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="Ejemplo: Ramo de Rosas"
+                            <Form.Control type="text" placeholder="Ejemplo: Ramo de Rosas"
                                 value={nuevoRamo.nombre}
-                                onChange={(e) => setNuevoRamo({ ...nuevoRamo, nombre: e.target.value })}
-                            />
+                                onChange={(e) => setNuevoRamo({ ...nuevoRamo, nombre: e.target.value })} />
                         </Form.Group>
                         <Form.Group className="mb-3">
                             <Form.Label>Precio (€)</Form.Label>
-                            <Form.Control
-                                type="number"
-                                placeholder="Ejemplo: 25.00"
+                            <Form.Control type="number" placeholder="Ejemplo: 25.00"
                                 value={nuevoRamo.precio}
-                                onChange={(e) => setNuevoRamo({ ...nuevoRamo, precio: parseFloat(e.target.value) || 0 })}
-                            />
+                                onChange={(e) => setNuevoRamo({ ...nuevoRamo, precio: parseFloat(e.target.value) || 0 })} />
                         </Form.Group>
                         <Form.Group className="mb-3">
                             <Form.Label>Tipo de Flor</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="Ejemplo: Rosas"
+                            <Form.Control type="text" placeholder="Ejemplo: Rosas"
                                 value={nuevoRamo.tipoFlor}
-                                onChange={(e) => setNuevoRamo({ ...nuevoRamo, tipoFlor: e.target.value })}
-                            />
+                                onChange={(e) => setNuevoRamo({ ...nuevoRamo, tipoFlor: e.target.value })} />
                         </Form.Group>
                         <Form.Group className="mb-3">
                             <Form.Label>Descripción</Form.Label>
-                            <Form.Control
-                                as="textarea"
-                                rows={3}
+                            <Form.Control as="textarea" rows={3}
                                 placeholder="Ejemplo: Un hermoso ramo de rosas rojas."
                                 value={nuevoRamo.descripcion}
-                                onChange={(e) => setNuevoRamo({ ...nuevoRamo, descripcion: e.target.value })}
-                            />
+                                onChange={(e) => setNuevoRamo({ ...nuevoRamo, descripcion: e.target.value })} />
                         </Form.Group>
                         <Form.Group className="mb-3">
                             <Form.Label>Tipo de Ocasión</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="Ejemplo: Boda, Cumpleaños"
+                            <Form.Control type="text" placeholder="Ejemplo: Boda, Cumpleaños"
                                 value={nuevoRamo.ocasion}
-                                onChange={(e) => setNuevoRamo({ ...nuevoRamo, ocasion: e.target.value })}
-                            />
+                                onChange={(e) => setNuevoRamo({ ...nuevoRamo, ocasion: e.target.value })} />
                         </Form.Group>
                         <Form.Group className="mb-3">
                             <Form.Label>URL de la Imagen</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="Ejemplo: https://example.com/imagen.jpg"
+                            <Form.Control type="text" placeholder="Ejemplo: https://example.com/imagen.jpg"
                                 value={nuevoRamo.imagen}
-                                onChange={(e) => setNuevoRamo({ ...nuevoRamo, imagen: e.target.value })}
-                            />
+                                onChange={(e) => setNuevoRamo({ ...nuevoRamo, imagen: e.target.value })} />
                         </Form.Group>
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={() => setShowModal(false)}>
-                        Cancelar
-                    </Button>
-                    <Button variant="primary" onClick={agregarRamo}>
-                        Guardar
-                    </Button>
+                    <Button variant="secondary" onClick={() => setShowModal(false)}>Cancelar</Button>
+                    <Button variant="primary" onClick={agregarRamo}>Guardar</Button>
                 </Modal.Footer>
             </Modal>
         </>
