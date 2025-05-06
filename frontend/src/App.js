@@ -11,6 +11,7 @@ import Main from './components/Main';
 import Footer from './components/Footer';
 import DetalleProducto from './components/DetalleProducto';
 import Login from "./components/Login";
+import Registro from "./components/Registro";
 import { CartProvider } from "./components/Main/CartContext";
 import Carrito from "./components/Main/Carrito";
 import GestionCatalogo from "./components/Main/GestionCatalogo";
@@ -33,6 +34,7 @@ function App() {
             <Route path="/" element={<Main productos={productos} />} />
             <Route path="/producto/:id" element={<DetalleProducto productos={productos} />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/registro" element={<Registro />} />
             <Route path="/carrito" element={<Carrito />} /> 
             <Route path="/gestioncatalogo" element={<GestionCatalogo />} />
 
