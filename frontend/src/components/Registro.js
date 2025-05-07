@@ -106,17 +106,6 @@ function Registro() {
                   />
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formTipoUsuario">
-                  <Form.Label>Tipo de usuario</Form.Label>
-                  <Form.Select
-                    value={tipoUsuario}
-                    onChange={(e) => setTipoUsuario(e.target.value)}
-                  >
-                    <option value="cliente">Cliente</option>
-                    <option value="productor">Productor</option>
-                  </Form.Select>
-                </Form.Group>
-
                 <div className="d-grid mb-3">
                   <Button variant="dark" onClick={handleRegistro}>
                     Registrarme

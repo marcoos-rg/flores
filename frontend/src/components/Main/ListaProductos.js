@@ -10,7 +10,7 @@ function ListaProductos({ productos }) {
 
       {productos.length === 0 ? (
         <p className="text-center text-muted">
-          No hay productos que coincidan con los filtros seleccionados.
+          ¡Pronto trendemos productos disponibles en esta ubicación!
         </p>
       ) : (
         <Row className="g-4">

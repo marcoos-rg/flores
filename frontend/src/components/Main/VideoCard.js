@@ -1,6 +1,6 @@
 import React from 'react';
-import { Card, Navbar, Nav, Container } from 'react-bootstrap';
-import landingVideo from '../../assets/video/landingpage.mp4';
+import { Card } from 'react-bootstrap';
+import landingVideo from '../../assets/video/landingpage3.mp4';
 
 function VideoCard() {
   return (
@@ -11,7 +11,6 @@ function VideoCard() {
       <video
         className="card-img"
         autoPlay
-        loop
         muted
         playsInline
         style={{
