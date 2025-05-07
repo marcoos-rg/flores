@@ -23,6 +23,10 @@ public class Pedido {
     @JsonManagedReference
     private List<DetallePedido> detalles;
 
+    @OneToOne(mappedBy = "pedido", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private Valoracion valoracion;
+
     private String estado;
 
     private LocalDate fecha_pedido;

@@ -70,6 +70,11 @@ function CustomNavbar() {
                 title={<span style={{ color: "white" }} className="fw-bold">{usuario.nombre}</span>}
                 menuVariant="dark"
               >
+
+              <NavDropdown.Item onClick={() => navigate("/mis-pedidos")}>
+                  Mis pedidos
+                </NavDropdown.Item>
+                
                 <NavDropdown.Item onClick={handleLogout}>Cerrar sesión</NavDropdown.Item>
               </NavDropdown>
             ) : (

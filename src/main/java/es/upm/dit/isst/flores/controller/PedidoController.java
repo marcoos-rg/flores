@@ -66,4 +66,11 @@ public class PedidoController {
 
         return "Pedido registrado con éxito. ID: " + pedido.getPedido_id();
     }
+
+
+    @GetMapping("/cliente/{id}")
+    public List<Pedido> obtenerPedidosPorCliente(@PathVariable Long id) {
+        return pedidoRepository.findByClienteId(id);
+    }
+    
 }

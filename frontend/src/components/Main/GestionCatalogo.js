@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import { Container, Table, Button, Form, Modal } from "react-bootstrap";
 import axios from "axios";
 import Navbar from "../Navbar";
+import ListaValoraciones from './ListaValoraciones';
+
 
 function GestionCatalogo() {
     const [catalogo, setCatalogo] = useState([]);
@@ -102,7 +104,16 @@ function GestionCatalogo() {
                         </tbody>
                     </Table>
                 )}
+
+                    {floricultorId && (
+                    <div className="mt-5">
+                        <ListaValoraciones floricultorId={floricultorId} />
+                    </div>
+                    )}
+
             </Container>
+            
+        
 
             <Modal show={showModal} onHide={() => setShowModal(false)}>
                 <Modal.Header closeButton>

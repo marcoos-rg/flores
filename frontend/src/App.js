@@ -15,6 +15,7 @@ import Registro from "./components/Registro";
 import { CartProvider } from "./components/Main/CartContext";
 import Carrito from "./components/Main/Carrito";
 import GestionCatalogo from "./components/Main/GestionCatalogo";
+import MisPedidos from "./components/Main/MisPedidos";
 
 
 function App() {
@@ -37,7 +38,7 @@ function App() {
             <Route path="/registro" element={<Registro />} />
             <Route path="/carrito" element={<Carrito />} /> 
             <Route path="/gestioncatalogo" element={<GestionCatalogo />} />
-
+            <Route path="/mis-pedidos" element={<MisPedidos />} />
             {/* {user && user.tipo === "floricultor" && (
               <Route path="/gestioncatalogo" element={<GestionCatalogo />} />
             )}  */}
