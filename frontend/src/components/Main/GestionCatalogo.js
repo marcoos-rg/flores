@@ -31,20 +31,26 @@ function GestionCatalogo() {
 
     const agregarRamo = () => {
         const ramoAEnviar = {
-            ...nuevoRamo,
+            nombre: nuevoRamo.nombre,
+            precio: nuevoRamo.precio,
+            tipoFlor: nuevoRamo.tipoFlor,
+            descripcion: nuevoRamo.descripcion,
+            ocasion: nuevoRamo.ocasion,
+            imagen: nuevoRamo.imagen,
             floricultorId: floricultorId,
             destacado: false
         };
-
+    
         axios.post("http://localhost:8080/api/productos", ramoAEnviar)
             .then(() => axios.get(`http://localhost:8080/api/productos/floricultor/${floricultorId}`))
             .then(response => {
                 setCatalogo(response.data);
-                setNuevoRamo({ nombre: "", precio: 0, tipoFlor: "", descripcion: "", ocasion: "", imagen: "" });
+                setNuevoRamo({ nombre: "", precio: 0, tipo_flor: "", descripcion: "", ocasion: "", imagen: "" });
                 setShowModal(false);
             })
             .catch(error => console.error("Error al crear ramo:", error));
     };
+    
 
     const quitarRamo = (id) => {
         axios.delete(`http://localhost:8080/api/productos/${id}`)

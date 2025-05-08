@@ -1,35 +1,34 @@
 package es.upm.dit.isst.flores.model;
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
 public class Valoracion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "valoracion_id")
+    private Long valoracionId;
 
     @ManyToOne
-    @JoinColumn(name = "cliente_id")
+    @JoinColumn(name = "cliente_id", nullable = false)
     private Cliente cliente;
 
     @ManyToOne
-    @JoinColumn(name = "floricultor_id")
+    @JoinColumn(name = "floricultor_id", nullable = false)
     private Floricultor floricultor;
 
-    @ManyToOne
-    @JoinColumn(name = "pedido_id")
-    private Pedido pedido;
-
-    private int puntuacion;
-    private String comentario;
-    private LocalDateTime fechaCreacion;
+    @Column(nullable = false)
+    private int nota;
 
     // Getters y setters
 
-    public Long getId() {
-        return id;
+    public Long getValoracionId() {
+        return valoracionId;
+    }
+
+    public void setValoracionId(Long valoracionId) {
+        this.valoracionId = valoracionId;
     }
 
     public Cliente getCliente() {
@@ -48,35 +47,11 @@ public class Valoracion {
         this.floricultor = floricultor;
     }
 
-    public Pedido getPedido() {
-        return pedido;
+    public int getNota() {
+        return nota;
     }
 
-    public void setPedido(Pedido pedido) {
-        this.pedido = pedido;
-    }
-
-    public int getPuntuacion() {
-        return puntuacion;
-    }
-
-    public void setPuntuacion(int puntuacion) {
-        this.puntuacion = puntuacion;
-    }
-
-    public String getComentario() {
-        return comentario;
-    }
-
-    public void setComentario(String comentario) {
-        this.comentario = comentario;
-    }
-
-    public LocalDateTime getFechaCreacion() {
-        return fechaCreacion;
-    }
-
-    public void setFechaCreacion(LocalDateTime fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
+    public void setNota(int nota) {
+        this.nota = nota;
     }
 }

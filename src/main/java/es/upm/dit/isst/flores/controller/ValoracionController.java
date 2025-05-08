@@ -1,13 +1,13 @@
 package es.upm.dit.isst.flores.controller;
 
-import es.upm.dit.isst.flores.dto.ValoracionRequest;
 import es.upm.dit.isst.flores.model.*;
 import es.upm.dit.isst.flores.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
+import es.upm.dit.isst.flores.dto.ValoracionRequest;
+
 import java.util.List;
 
 @RestController
@@ -23,34 +23,25 @@ public class ValoracionController {
     @Autowired
     private FloricultorRepository floricultorRepository;
 
-    @Autowired
-    private PedidoRepository pedidoRepository;
-
     @PostMapping("/crear")
     public ResponseEntity<?> crearValoracion(@RequestBody ValoracionRequest request) {
 
         Cliente cliente = clienteRepository.findById(request.getClienteId())
             .orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
 
-        Pedido pedido = pedidoRepository.findById(request.getPedidoId())
-            .orElseThrow(() -> new RuntimeException("Pedido no encontrado"));
-
-        Floricultor floricultor = pedido.getDetalles()
-            .get(0).getProducto().getFloricultor();
+        Floricultor floricultor = floricultorRepository.findById(request.getFloricultorId())
+            .orElseThrow(() -> new RuntimeException("Floricultor no encontrado"));
 
         Valoracion valoracion = new Valoracion();
         valoracion.setCliente(cliente);
         valoracion.setFloricultor(floricultor);
-        valoracion.setPedido(pedido);
-        valoracion.setPuntuacion(request.getPuntuacion());
-        valoracion.setComentario(request.getComentario());
-        valoracion.setFechaCreacion(LocalDateTime.now());
-
+        valoracion.setNota(request.getNota());
 
         valoracionRepository.save(valoracion);
 
         return ResponseEntity.ok(valoracion);
     }
+
 
     @GetMapping("/floricultor/{id}")
     public ResponseEntity<List<Valoracion>> obtenerValoracionesPorFloricultor(@PathVariable Long id) {

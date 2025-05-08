@@ -20,11 +20,9 @@ const ListaValoraciones = ({ floricultorId }) => {
             ) : (
                 valoraciones.map((val, idx) => (
                     <div key={idx} style={{ border: "1px solid #ddd", padding: "10px", marginBottom: "10px" }}>
-                        <strong>{val.puntuacion} ⭐</strong>
-                        <p>{val.comentario}</p>
-                        <small>
-                            {new Date(val.fecha).toLocaleDateString()} — {val.nombreCliente}
-                        </small>
+                        <strong>{val.nota} ⭐</strong>
+                        <p>Cliente ID: {val.cliente.cliente_id}</p>
+                        <small>Valoración ID: {val.valoracionId}</small>
                     </div>
                 ))
             )}
