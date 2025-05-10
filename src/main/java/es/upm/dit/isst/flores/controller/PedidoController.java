@@ -72,5 +72,10 @@ public class PedidoController {
     public List<Pedido> obtenerPedidosPorCliente(@PathVariable Long id) {
         return pedidoRepository.findByClienteId(id);
     }
+
+    @GetMapping("/floricultor/{id}")
+    public List<Pedido> obtenerPedidosPorFloricultor(@PathVariable Long id) {
+        return pedidoRepository.findByFloricultorId(id);
+    }
     
 }
