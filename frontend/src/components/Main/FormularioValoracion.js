@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Form, Button, Alert } from "react-bootstrap";
 
-const FormularioValoracion = ({ pedidoId, floricultorId, onValoracionEnviada }) => {
+const FormularioValoracion = ({
+  pedidoId,
+  floricultorId,
+  onValoracionEnviada,
+}) => {
   const [puntuacion, setPuntuacion] = useState(5);
   const [comentario, setComentario] = useState("");
   const [mensaje, setMensaje] = useState("");
@@ -12,27 +16,26 @@ const FormularioValoracion = ({ pedidoId, floricultorId, onValoracionEnviada }) 
   const clienteId = usuario?.tipoUsuario === "cliente" ? usuario.id : null;
 
   const enviarValoracion = () => {
-    if (!clienteId || !pedidoId || !floricultorId) {
-      setError("Faltan datos para enviar la valoración.");
-      return;
-    }
+  if (!clienteId || !pedidoId || !floricultorId) {
+    setError("Faltan datos para enviar la valoración.");
+    return;
+  }
 
-    axios
-      .post("http://localhost:8080/valoraciones", {
-        puntuacion,
-        comentario,
-        pedidoId,
-        clienteId,
-        floricultorId
-      })
-      .then(() => {
-        setMensaje("¡Valoración enviada correctamente!");
-        setComentario("");
-        setPuntuacion(5);
-        onValoracionEnviada && onValoracionEnviada(); // refrescar lista si se pasa función
-      })
-      .catch(() => setError("Error al enviar valoración."));
-  };
+  axios
+    .post("http://localhost:8080/api/valoraciones/crear", {
+      nota: puntuacion,
+      pedidoId,
+      clienteId,
+      floricultorId
+    })
+    .then(() => {
+      setMensaje("¡Valoración enviada correctamente!");
+      setComentario("");
+      setPuntuacion(5);
+      onValoracionEnviada && onValoracionEnviada();
+    })
+    .catch(() => setError("Error al enviar valoración."));
+};
 
   return (
     <div className="mt-4">
@@ -43,8 +46,15 @@ const FormularioValoracion = ({ pedidoId, floricultorId, onValoracionEnviada }) 
       <Form>
         <Form.Group>
           <Form.Label>Puntuación (1 a 5)</Form.Label>
-          <Form.Select value={puntuacion} onChange={(e) => setPuntuacion(Number(e.target.value))}>
-            {[1, 2, 3, 4, 5].map(n => <option key={n} value={n}>{n} ⭐</option>)}
+          <Form.Select
+            value={puntuacion}
+            onChange={(e) => setPuntuacion(Number(e.target.value))}
+          >
+            {[1, 2, 3, 4, 5].map((n) => (
+              <option key={n} value={n}>
+                {n} ⭐
+              </option>
+            ))}
           </Form.Select>
         </Form.Group>
 

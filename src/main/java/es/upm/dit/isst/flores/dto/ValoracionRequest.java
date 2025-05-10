@@ -4,6 +4,7 @@ public class ValoracionRequest {
     private Long clienteId;
     private Long floricultorId;
     private int nota;
+    private Long pedidoId;
 
     // Getters y setters
     public Long getClienteId() {
@@ -28,5 +29,13 @@ public class ValoracionRequest {
 
     public void setNota(int nota) {
         this.nota = nota;
+    }
+
+    public Long getPedidoId() {
+        return pedidoId;
+    }
+
+    public void setPedidoId(Long pedidoId) {
+        this.pedidoId = pedidoId;
     }
 }

@@ -7,7 +7,7 @@ const ListaValoraciones = ({ floricultorId }) => {
     useEffect(() => {
         if (!floricultorId) return;
 
-        axios.get(`http://localhost:8080/valoraciones/floricultor/${floricultorId}`)
+        axios.get(`http://localhost:8080/api/valoraciones/floricultor/${floricultorId}`)
             .then(res => setValoraciones(res.data))
             .catch(err => console.error("Error al cargar valoraciones:", err));
     }, [floricultorId]);

@@ -63,11 +63,15 @@ const MisPedidos = () => {
               key={pedido.pedido_id}
               style={{
                 backgroundColor: pedido.urgencia ? "#ffe5e5" : "white",
-                border: pedido.urgencia ? "1px solid #cc0000" : "1px solid #ddd",
+                border: pedido.urgencia
+                  ? "1px solid #cc0000"
+                  : "1px solid #ddd",
               }}
             >
               <h5 className="mb-3">🧾 Pedido: {pedido.pedido_id}</h5>
-              <p>Estado: <strong>{pedido.estado}</strong></p>
+              <p>
+                Estado: <strong>{pedido.estado}</strong>
+              </p>
               <p>Fecha: {pedido.fecha_pedido || "Sin fecha"}</p>
               <p>Dirección: {pedido.direccion_pedido || "No especificada"}</p>
 
@@ -92,7 +96,10 @@ const MisPedidos = () => {
                       <h6>{detalle.producto?.nombre}</h6>
                       <p>Cantidad: {detalle.cantidad}</p>
                       {tipoUsuario === "cliente" ? (
-                        <p>Floricultor: {detalle.producto?.floricultor?.nombre || "?"}</p>
+                        <p>
+                          Floricultor:{" "}
+                          {detalle.producto?.floricultor?.nombre || "?"}
+                        </p>
                       ) : (
                         <p>Cliente: {pedido.cliente?.nombre || "?"}</p>
                       )}
@@ -103,20 +110,31 @@ const MisPedidos = () => {
 
               {/* Valoración visible solo para clientes */}
               {tipoUsuario === "cliente" &&
-                pedido.estado === "ENTREGADO" &&
+                pedido.estado === "ENVIADO" &&
                 !pedido.valoracion && (
-                  <FormularioValoracion
-                    pedidoId={pedido.pedido_id}
-                    floricultorId={pedido.detalles?.[0]?.producto?.floricultor?.floricultor_id}
-                    onValoracionEnviada={cargarPedidos}
-                  />
+                  <>
+                    <p className="text-info">
+                      ¡Puedes dejar tu valoración para este pedido!
+                    </p>
+                    <FormularioValoracion
+                      pedidoId={pedido.pedido_id}
+                      floricultorId={
+                        pedido.detalles?.[0]?.producto?.floricultor
+                          ?.floricultor_id
+                      }
+                      onValoracionEnviada={cargarPedidos}
+                    />
+                  </>
                 )}
 
               {pedido.valoracion && (
                 <p className="mt-2 text-success">
-                  ✅ {tipoUsuario === "cliente"
+                  ✅{" "}
+                  {tipoUsuario === "cliente"
                     ? "Ya valoraste este pedido"
-                    : "Este pedido fue valorado con " + pedido.valoracion.puntuacion + " ⭐"}
+                    : "Este pedido fue valorado con " +
+                      pedido.valoracion.puntuacion +
+                      " ⭐"}
                 </p>
               )}
             </Card>
