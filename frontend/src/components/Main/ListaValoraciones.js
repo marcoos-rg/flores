@@ -18,13 +18,14 @@ const ListaValoraciones = ({ floricultorId }) => {
             {valoraciones.length === 0 ? (
                 <p>No tienes valoraciones aún.</p>
             ) : (
-                valoraciones.map((val, idx) => (
-                    <div key={idx} style={{ border: "1px solid #ddd", padding: "10px", marginBottom: "10px" }}>
-                        <strong>{val.nota} ⭐</strong>
-                        <p>{val.cliente?.nombre}</p>
-                        <small>Valoración ID: {val.valoracionId}</small>
+                valoraciones.map((val) => (
+                    <div key={val.valoracionId} className="rounded border p-3 mb-3 shadow-sm">
+                        <h5 className="mb-1">{val.nombreCliente || 'Cliente anónimo'}</h5>
+                        <p className="mb-1">Nota: <strong>{val.nota} ⭐</strong></p>
+                        <small>ID Valoración: {val.valoracionId}</small>
                     </div>
                 ))
+                
             )}
         </div>
     );
