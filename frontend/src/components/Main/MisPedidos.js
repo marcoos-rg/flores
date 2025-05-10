@@ -40,18 +40,38 @@ const MisPedidos = () => {
         <p>No has realizado pedidos aún.</p>
       ) : (
         pedidos.map(pedido => (
-          <Card className="mb-4 p-3" key={pedido.pedido_id}>
-            <div className="d-flex justify-content-between align-items-center">
-              <div>
-                <h5>{pedido.detalles?.[0]?.producto?.nombre || "Producto"}</h5>
-                <p>Estado: <strong>{pedido.estado}</strong></p>
-                <p>Floricultor: {pedido.detalles?.[0]?.producto?.floricultor?.nombre || "?"}</p>
-              </div>
-              <img
-                src={pedido.detalles?.[0]?.producto?.imagen}
-                alt={pedido.detalles?.[0]?.producto?.nombre}
-                style={{ width: "100px", height: "100px", objectFit: "cover" }}
-              />
+          <Card
+            className="mb-4 p-3"
+            key={pedido.pedido_id}
+            style={{
+              backgroundColor: pedido.urgencia ? "#ffe5e5" : "white",
+              border: pedido.urgencia ? "1px solid #cc0000" : "1px solid #ddd"
+            }}
+            >
+            <h5 className="mb-3">🧾 Pedido: {pedido.pedido_id}</h5>
+            <p>Estado: <strong>{pedido.estado}</strong></p>
+            <p>Fecha: {pedido.fecha_pedido || "Sin fecha"}</p>
+            <p>Dirección: {pedido.direccion_pedido || "No especificada"}</p>
+
+            {pedido.urgencia && (
+              <p className="text-danger fw-bold">⚠️ Pedido urgente</p>
+            )}
+
+            <div className="row">
+              {pedido.detalles?.map((detalle, idx) => (
+                <div key={idx} className="col-md-6 d-flex mb-3">
+                  <img
+                    src={detalle.producto?.imagen}
+                    alt={detalle.producto?.nombre}
+                    style={{ width: "100px", height: "100px", objectFit: "cover", marginRight: "15px" }}
+                  />
+                  <div>
+                    <h6>{detalle.producto?.nombre}</h6>
+                    <p>Cantidad: {detalle.cantidad}</p>
+                    <p>Floricultor: {detalle.producto?.floricultor?.nombre || "?"}</p>
+                  </div>
+                </div>
+              ))}
             </div>
 
             {pedido.estado === "ENTREGADO" && !pedido.valoracion && (
@@ -66,6 +86,8 @@ const MisPedidos = () => {
               <p className="mt-2 text-success">✅ Ya valoraste este pedido</p>
             )}
           </Card>
+
+
         ))
       )}
     </Container>
