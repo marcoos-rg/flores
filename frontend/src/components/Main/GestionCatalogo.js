@@ -135,7 +135,7 @@ function GestionCatalogo() {
                         </Form.Group>
                         <Form.Group className="mb-3">
                             <Form.Label>Precio (€)</Form.Label>
-                            <Form.Control type="number" placeholder="Ejemplo: 25.00"
+                            <Form.Control type="text" placeholder="Ejemplo: 25.00"
                                 value={nuevoRamo.precio}
                                 onChange={(e) => setNuevoRamo({ ...nuevoRamo, precio: parseFloat(e.target.value) || 0 })} />
                         </Form.Group>

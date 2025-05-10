@@ -62,3 +62,16 @@ INSERT INTO cliente (cliente_id, email, contrasena, nombre, imagen) VALUES
 (5, 'maria@cliente.com', 'maria123', 'María López', 'https://randomuser.me/api/portraits/women/5.jpg');
 
 ALTER TABLE cliente ALTER COLUMN cliente_id RESTART WITH 6;
+
+
+INSERT INTO valoracion (valoracion_id, nota, cliente_id, floricultor_id) VALUES
+(1, 5, 1, 1),
+(2, 4, 2, 2),
+(3, 3, 3, 3),
+(4, 5, 4, 4),
+(5, 4, 5, 5),
+(6, 5, 1, 2),
+(7, 4, 2, 3),
+(8, 3, 3, 4),
+(9, 5, 4, 5),
+(10, 4, 5, 1);

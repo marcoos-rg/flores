@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import es.upm.dit.isst.flores.dto.ValoracionRequest;
+import es.upm.dit.isst.flores.dto.ValoracionResponse;
 
 import java.util.List;
 
@@ -44,8 +45,18 @@ public class ValoracionController {
 
 
     @GetMapping("/floricultor/{id}")
-    public ResponseEntity<List<Valoracion>> obtenerValoracionesPorFloricultor(@PathVariable Long id) {
+    public ResponseEntity<List<ValoracionResponse>> obtenerValoracionesPorFloricultor(@PathVariable Long id) {
         List<Valoracion> valoraciones = valoracionRepository.findByFloricultorId(id);
-        return ResponseEntity.ok(valoraciones);
+    
+        List<ValoracionResponse> respuesta = valoraciones.stream()
+            .map(v -> new ValoracionResponse(
+                v.getValoracionId(),
+                v.getNota(),
+                v.getCliente().getNombre()
+            ))
+            .toList();
+    
+        return ResponseEntity.ok(respuesta);
     }
+    
 }

@@ -29,3 +29,13 @@ CREATE TABLE cliente (
     nombre VARCHAR(255),
     imagen VARCHAR(255)
 );
+
+
+CREATE TABLE valoracion (
+    valoracion_id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    nota BIGINT,
+    cliente_id BIGINT,
+    floricultor_id BIGINT,
+    CONSTRAINT fk_cliente_id FOREIGN KEY (cliente_id) REFERENCES cliente(cliente_id),
+    CONSTRAINT fk_floricultor_id FOREIGN KEY (floricultor_id) REFERENCES floricultor(floricultor_id)
+);

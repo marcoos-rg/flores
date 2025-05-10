@@ -21,7 +21,7 @@ const ListaValoraciones = ({ floricultorId }) => {
                 valoraciones.map((val, idx) => (
                     <div key={idx} style={{ border: "1px solid #ddd", padding: "10px", marginBottom: "10px" }}>
                         <strong>{val.nota} ⭐</strong>
-                        <p>Cliente ID: {val.cliente.cliente_id}</p>
+                        <p>{val.cliente?.nombre}</p>
                         <small>Valoración ID: {val.valoracionId}</small>
                     </div>
                 ))

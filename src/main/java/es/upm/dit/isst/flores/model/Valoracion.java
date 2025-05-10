@@ -2,6 +2,8 @@ package es.upm.dit.isst.flores.model;
 
 import jakarta.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class Valoracion {
 
@@ -12,11 +14,14 @@ public class Valoracion {
 
     @ManyToOne
     @JoinColumn(name = "cliente_id", nullable = false)
+    @JsonIgnoreProperties({"contrasena", "imagen", "email"}) // evita exponer info sensible
     private Cliente cliente;
 
     @ManyToOne
     @JoinColumn(name = "floricultor_id", nullable = false)
     private Floricultor floricultor;
+
+    
 
     @Column(nullable = false)
     private int nota;
