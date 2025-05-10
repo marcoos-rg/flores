@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Card, Container, Spinner } from "react-bootstrap";
+import { Card, Container, Spinner, Button } from "react-bootstrap";
 import FormularioValoracion from "./FormularioValoracion";
 import CustomNavbar from "../Navbar";
 
@@ -40,6 +40,15 @@ const MisPedidos = () => {
     );
   }
 
+  const enviarPedido = (pedidoId) => {
+    axios
+      .put(`http://localhost:8080/api/pedidos/${pedidoId}/enviar`)
+      .then(() => cargarPedidos())
+      .catch((err) =>
+        console.error("Error al marcar el pedido como ENVIADO:", err)
+      );
+  };
+
   return (
     <>
       <CustomNavbar />
@@ -62,8 +71,14 @@ const MisPedidos = () => {
               className="mb-4 p-3"
               key={pedido.pedido_id}
               style={{
-                backgroundColor: pedido.urgencia ? "#ffe5e5" : "white",
-                border: pedido.urgencia
+                backgroundColor: pedido.estado === "ENVIADO"
+                  ?  "#e6f4ea" // verde claro
+                  : pedido.urgencia
+                  ? "#ffe5e5" 
+                  : "white",
+                border: pedido.estado === "ENVIADO"
+                  ? "1px solid #2e7d32" // borde verde más fuerte
+                  : pedido.urgencia
                   ? "1px solid #cc0000"
                   : "1px solid #ddd",
               }}
@@ -107,6 +122,18 @@ const MisPedidos = () => {
                   </div>
                 ))}
               </div>
+              {/* Botón "Enviar Pedido" visible solo para floricultores en pedidos REALIZADOS */}
+              {tipoUsuario === "floricultor" &&
+                pedido.estado === "REALIZADO" && (
+                  <div className="mt-3">
+                    <Button
+                      variant="success"
+                      onClick={() => enviarPedido(pedido.pedido_id)}
+                    >
+                      Enviar Pedido
+                    </Button>
+                  </div>
+                )}
 
               {/* Valoración visible solo para clientes */}
               {tipoUsuario === "cliente" &&

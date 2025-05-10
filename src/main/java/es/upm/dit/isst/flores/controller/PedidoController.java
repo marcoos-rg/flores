@@ -7,6 +7,8 @@ import es.upm.dit.isst.flores.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import org.springframework.http.ResponseEntity;
+
 import java.time.LocalDate;
 import java.util.*;
 
@@ -67,6 +69,20 @@ public class PedidoController {
         return "Pedido registrado con éxito. ID: " + pedido.getPedido_id();
     }
 
+    @PutMapping("/{id}/enviar")
+    public ResponseEntity<?> marcarPedidoComoEnviado(@PathVariable Long id) {
+        Pedido pedido = pedidoRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Pedido no encontrado"));
+
+        if (!"REALIZADO".equals(pedido.getEstado())) {
+            return ResponseEntity.badRequest().body("Solo se pueden enviar pedidos con estado REALIZADO.");
+        }
+
+        pedido.setEstado("ENVIADO");
+        pedidoRepository.save(pedido);
+
+        return ResponseEntity.ok("Pedido marcado como ENVIADO.");
+    }
 
     @GetMapping("/cliente/{id}")
     public List<Pedido> obtenerPedidosPorCliente(@PathVariable Long id) {
