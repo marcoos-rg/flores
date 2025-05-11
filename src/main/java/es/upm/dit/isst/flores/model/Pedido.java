@@ -23,7 +23,15 @@ public class Pedido {
     @JsonManagedReference
     private List<DetallePedido> detalles;
 
-    private String estado;
+    @Enumerated(EnumType.STRING)
+    private Estado estado;
+
+    public enum Estado {
+        REALIZADO,
+        ENVIADO,
+        VALORADO,
+        ERROR
+    }
 
     private LocalDate fecha_pedido;
     private LocalDate fecha_entrega;
@@ -63,11 +71,11 @@ public class Pedido {
         this.detalles = detalles;
     }
 
-    public String getEstado() {
+    public Estado getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(Estado estado) {
         this.estado = estado;
     }
 
