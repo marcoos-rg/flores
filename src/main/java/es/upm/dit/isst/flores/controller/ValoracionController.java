@@ -47,7 +47,7 @@ public class ValoracionController {
         }
 
         // Verificar que el pedido está en estado ENVIADO
-        if (!"ENVIADO".equals(pedido.getEstado())) {
+        if (pedido.getEstado() != Pedido.Estado.ENVIADO) {
             return ResponseEntity.badRequest().body("Este pedido no está disponible para valorar.");
         }
 
@@ -59,7 +59,7 @@ public class ValoracionController {
     valoracionRepository.save(valoracion);
 
     // Cambiar el estado del pedido a VALORADO
-    pedido.setEstado("VALORADO");
+    pedido.setEstado(Pedido.Estado.VALORADO);
     pedidoRepository.save(pedido);
 
     return ResponseEntity.ok("Valoración creada y pedido actualizado.");

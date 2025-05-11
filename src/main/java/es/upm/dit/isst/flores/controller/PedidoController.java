@@ -36,7 +36,7 @@ public class PedidoController {
         pedido.setCliente(cliente);
         pedido.setDireccion_pedido(request.getDireccionEntrega());
         pedido.setUrgencia(request.isUrgencia());
-        pedido.setEstado("REALIZADO");
+        pedido.setEstado(Pedido.Estado.REALIZADO);
 
         // Nuevos campos
         pedido.setCiudad(request.getCiudad());
@@ -81,11 +81,11 @@ public class PedidoController {
         Pedido pedido = pedidoRepository.findById(id)
             .orElseThrow(() -> new RuntimeException("Pedido no encontrado"));
 
-        if (!"REALIZADO".equals(pedido.getEstado())) {
+        if (pedido.getEstado() != Pedido.Estado.REALIZADO) {
             return ResponseEntity.badRequest().body("Solo se pueden enviar pedidos con estado REALIZADO.");
         }
 
-        pedido.setEstado("ENVIADO");
+        pedido.setEstado(Pedido.Estado.ENVIADO);
         pedidoRepository.save(pedido);
 
         return ResponseEntity.ok("Pedido marcado como ENVIADO.");

@@ -44,6 +44,7 @@ function Filtros({ onFilterChange }) {
                 <option value="Aniversario">Aniversario</option>
                 <option value="Amistad">Amistad</option>
                 <option value="Regalo">Regalo</option>
+                <option value="Luto">Luto</option>
               </Form.Select>
             </Form.Group>
 
