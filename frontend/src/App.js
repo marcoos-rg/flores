@@ -1,6 +1,8 @@
 // Punto de Inicio de la Aplicación Frontend
 // Para arrancar, navegar a la carpeta 'frontend' y ejecutar 'npm start'
 
+// Fix merge roto
+
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
