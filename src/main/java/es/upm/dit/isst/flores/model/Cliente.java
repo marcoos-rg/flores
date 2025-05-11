@@ -14,7 +14,7 @@ public class Cliente {
     private String email;
     private String contrasena;
     private String nombre;
-    private String imagen;
+    // private String imagen;
 
 
 
@@ -56,13 +56,13 @@ public class Cliente {
         this.contrasena = contrasena;
     }
         
-    public String getImagen() {
-        return imagen;
-    }
+    // // public String getImagen() {
+    // //     return imagen;
+    // // }
 
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
-    }
+    // // public void setImagen(String imagen) {
+    // //     this.imagen = imagen;
+    // // }
 
     public List<Pedido> getPedidos() {
         return pedidos;

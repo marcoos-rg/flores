@@ -21,7 +21,7 @@ public class Producto {
     private double precio;
     private String ocasion;
     private String tipo_flor;
-    private boolean destacado;
+    // private boolean destacado;
 
     // Getters y Setters
 
@@ -89,11 +89,11 @@ public class Producto {
         this.tipo_flor = tipo_flor;
     }
 
-    public boolean isDestacado() {
-        return destacado;
-    }
+    // public boolean isDestacado() {
+    //     return destacado;
+    // }
 
-    public void setDestacado(boolean destacado) {
-        this.destacado = destacado;
-    }
+    // public void setDestacado(boolean destacado) {
+    //     this.destacado = destacado;
+    // }
 }

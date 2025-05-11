@@ -66,7 +66,7 @@ public class AuthController {
         nuevoCliente.setEmail(request.getEmail());
         nuevoCliente.setContrasena(passwordEncoder.encode(request.getContrasena()));
         nuevoCliente.setNombre(request.getNombre());
-        nuevoCliente.setImagen(request.getImagen());
+       // nuevoCliente.setImagen(request.getImagen());
 
         clienteRepository.save(nuevoCliente);
 

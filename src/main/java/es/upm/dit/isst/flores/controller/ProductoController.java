@@ -54,7 +54,7 @@ public class ProductoController {
         producto.setPrecio(request.getPrecio());
         producto.setOcasion(request.getOcasion());
         producto.setTipo_flor(request.getTipoFlor());
-        producto.setDestacado(request.isDestacado());
+        // producto.setDestacado(request.isDestacado());
 
         productoRepository.save(producto);
 
