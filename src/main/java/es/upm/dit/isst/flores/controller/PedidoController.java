@@ -38,12 +38,19 @@ public class PedidoController {
         pedido.setUrgencia(request.isUrgencia());
         pedido.setEstado("REALIZADO");
 
-        // Fecha de pedido: hoy. Fecha de entrega: null por defecto
-        LocalDate hoy = LocalDate.now();
-        pedido.setFecha_pedido(hoy);
-        pedido.setFecha_entrega(null); // Se establecerá cuando se marque como RECIBIDO
+        // Nuevos campos
+        pedido.setCiudad(request.getCiudad());
+        pedido.setCodigoPostal(request.getCodigoPostal());
 
-        // Calcular precio total
+        // Si es urgente y se ha proporcionado fecha de entrega, la guardamos
+        if (request.isUrgencia() && request.getFechaEntrega() != null) {
+            pedido.setFecha_entrega(request.getFechaEntrega());
+        } else {
+            pedido.setFecha_entrega(null);
+        }
+
+        pedido.setFecha_pedido(LocalDate.now());
+
         double precioTotal = 0.0;
         List<DetallePedido> detalles = new ArrayList<>();
 

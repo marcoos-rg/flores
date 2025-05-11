@@ -30,6 +30,9 @@ public class Pedido {
 
     private String direccion_pedido;
 
+    private String ciudad; // NUEVO CAMPO
+    private String codigoPostal; // NUEVO CAMPO
+
     private double precio;
 
     private Boolean urgencia;
@@ -90,6 +93,22 @@ public class Pedido {
 
     public void setDireccion_pedido(String direccion_pedido) {
         this.direccion_pedido = direccion_pedido;
+    }
+
+    public String getCiudad() {
+        return ciudad;
+    }
+
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
+    }
+
+    public String getCodigoPostal() {
+        return codigoPostal;
+    }
+
+    public void setCodigoPostal(String codigoPostal) {
+        this.codigoPostal = codigoPostal;
     }
 
     public double getPrecio() {
