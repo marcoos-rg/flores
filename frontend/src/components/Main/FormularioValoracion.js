@@ -58,16 +58,6 @@ const FormularioValoracion = ({
           </Form.Select>
         </Form.Group>
 
-        <Form.Group className="mt-3">
-          <Form.Label>Comentario</Form.Label>
-          <Form.Control
-            as="textarea"
-            rows={3}
-            placeholder="Escribe tu opinión sobre el pedido..."
-            value={comentario}
-            onChange={(e) => setComentario(e.target.value)}
-          />
-        </Form.Group>
 
         <Button variant="primary" className="mt-3" onClick={enviarValoracion}>
           Enviar valoración

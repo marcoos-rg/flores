@@ -186,6 +186,7 @@ function GestionCatalogo() {
                 }
               >
                 <option value="">Seleccione un tipo de flor</option>
+                <option value="Rosas">Rosas</option>
                 <option value="Tulipanes">Tulipanes</option>
                 <option value="Lirios">Lirios</option>
                 <option value="Peonias">Peonias</option>
